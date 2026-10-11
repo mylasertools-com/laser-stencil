@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Add bridges to stencils so the middles of letters and shapes stay attached. An open-source package by MyLaserTools. Runs in your browser."
+    />
+    <title>Laser Stencil</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="./"><span class="mark">O</span>laser-stencil</a>
+      <nav>
+        <a href="https://github.com/mylasertools-com/laser-stencil">GitHub ↗</a
+        ><a href="https://www.npmjs.com/package/@mylasertools/laser-stencil">npm ↗</a
+        ><a href="https://mylasertools.com">MyLaserTools ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <div class="eyebrow"><span></span> STENCIL BRIDGES, AUTOMATICALLY</div>
+          <h1>Cut the letters.<br /><em>Keep the middles.</em></h1>
+          <p>
+            The middles of O, A, B and 8 fall out of a cut stencil. This finds every piece that
+            would drop and adds the shortest bridges to hold it in place. Works with any font or
+            SVG.
+          </p>
+        </div>
+        <div class="package">
+          <span class="package-label">TYPESCRIPT · CLI · BROWSER</span
+          ><code>npm i @mylasertools/laser-stencil</code>
+          <div><span>Runs locally</span><span>No account</span><span>MIT</span></div>
+        </div>
+      </section>
+      <section class="workbench" aria-label="Interactive stencil demo">
+        <aside class="controls">
+          <div class="control-heading"><span>01 / YOUR DESIGN</span></div>
+          <div id="text-controls">
+            <label for="text">Text</label>
+            <input id="text" type="text" value="GOOD VIBES" maxlength="24" spellcheck="false" />
+            <label for="font">Font</label>
+            <select id="font">
+              <option value="ArchivoBlack-Regular.ttf">Archivo Black</option>
+              <option value="AlfaSlabOne-Regular.ttf">Alfa Slab One</option>
+              <option value="RubikMonoOne-Regular.ttf">Rubik Mono One</option>
+            </select>
+            <div class="row">
+              <label for="size">Letter size</label><output id="size-label">40 mm</output>
+            </div>
+            <input id="size" type="range" min="15" max="90" step="1" value="40" />
+          </div>
+          <div id="file-controls" hidden>
+            <p class="hint">Using <strong id="file-name"></strong></p>
+            <button id="use-text" class="text-button" type="button">← Back to text</button>
+          </div>
+          <label class="upload" for="file"
+            ><span>↑</span> Open your SVG<input id="file" type="file" accept=".svg,image/svg+xml"
+          /></label>
+          <div class="divider"></div>
+          <div class="control-heading"><span>02 / BRIDGES</span></div>
+          <div class="row">
+            <label for="width">Bridge width</label><output id="width-label">1.5 mm</output>
+          </div>
+          <input id="width" type="range" min="0.5" max="5" step="0.1" value="1.5" />
+          <label>Bridges per island</label>
+          <div class="segmented" id="bridges" role="group" aria-label="Bridges per island">
+            <button type="button" data-value="1">1</button
+            ><button type="button" data-value="2" class="active">2</button
+            ><button type="button" data-value="3">3</button
+            ><button type="button" data-value="4">4</button>
+          </div>
+          <label>Direction</label>
+          <div class="segmented" id="direction" role="group" aria-label="Bridge direction">
+            <button type="button" data-value="vertical" class="active">Vertical</button
+            ><button type="button" data-value="horizontal">Horizontal</button
+            ><button type="button" data-value="auto">Shortest</button>
+          </div>
+          <div class="divider"></div>
+          <div class="control-heading"><span>03 / SHEET</span></div>
+          <div class="row">
+            <label for="margin">Margin around design</label><output id="margin-label">8 mm</output>
+          </div>
+          <input id="margin" type="range" min="0" max="30" step="1" value="8" />
+          <button id="download" class="primary" type="button">Download stencil SVG</button>
+          <pre class="snippet"><code id="snippet"></code></pre>
+        </aside>
+        <div class="stage-panel">
+          <div class="toolbar">
+            <div class="segmented compact" id="view" role="group" aria-label="Preview">
+              <button type="button" data-value="before">Before</button
+              ><button type="button" data-value="after" class="active">With bridges</button>
+            </div>
+            <label class="check"
+              ><input id="highlight" type="checkbox" checked /> Highlight bridges</label
+            >
+          </div>
+          <div id="stage" class="stage" aria-live="polite"></div>
+          <div class="stats">
+            <div><strong id="stat-islands">0</strong><span>pieces would fall out</span></div>
+            <div><strong id="stat-bridges">0</strong><span>bridges added</span></div>
+            <div><strong id="stat-size">0 × 0</strong><span>sheet size, mm</span></div>
+            <div><strong id="stat-time">0</strong><span>ms in your browser</span></div>
+          </div>
+          <ul id="issues" class="issues"></ul>
+        </div>
+      </section>
+      <footer>
+        <p>
+          Files never leave your browser. Fonts: Archivo Black, Alfa Slab One and Rubik Mono One,
+          SIL Open Font License. Made by
+          <a href="https://mylasertools.com">MyLaserTools</a>, makers of design generators for laser
+          cutting and 3D printing.
+        </p>
+      </footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
