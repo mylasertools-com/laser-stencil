@@ -1,0 +1,79 @@
+{
+  "name": "@mylasertools/laser-stencil",
+  "version": "0.1.0",
+  "description": "Add bridges to stencils so the middles of letters and shapes don't fall out. SVG, TypeScript, CLI and browser.",
+  "type": "module",
+  "license": "MIT",
+  "author": "MyLaserTools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mylasertools-com/laser-stencil.git"
+  },
+  "homepage": "https://mylasertools-com.github.io/laser-stencil/demo/",
+  "bugs": "https://github.com/mylasertools-com/laser-stencil/issues",
+  "keywords": [
+    "stencil",
+    "stencil-bridges",
+    "laser-cutting",
+    "vinyl",
+    "svg",
+    "islands",
+    "fabrication",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "bin": {
+    "laser-stencil": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/build.mjs",
+    "test": "node --test",
+    "check": "npm run build && npm test && npm run size",
+    "size": "node scripts/size.mjs",
+    "demo": "node scripts/serve.mjs",
+    "examples": "node scripts/examples.mjs",
+    "capture": "node scripts/capture.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "prepack": "npm run check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@types/node": "20.19.43",
+    "clipper2-ts": "2.0.1-18",
+    "esbuild": "0.25.12",
+    "opentype.js": "1.3.4",
+    "playwright": "1.61.1",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  }
+}
