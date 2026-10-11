@@ -38,7 +38,7 @@
     }
   },
   "bin": {
-    "laser-stencil": "./dist/cli.js"
+    "laser-stencil": "dist/cli.js"
   },
   "files": [
     "dist",
