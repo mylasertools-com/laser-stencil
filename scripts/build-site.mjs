@@ -1,5 +1,7 @@
-import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
-await rm('site', { recursive: true, force: true });
+import { cp, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
+await mkdir('site', { recursive: true });
+for (const name of await readdir('site'))
+  if (name !== '.git') await rm(`site/${name}`, { recursive: true, force: true });
 await mkdir('site/dist', { recursive: true });
 await cp('demo', 'site/demo', { recursive: true });
 await cp('dist/index.js', 'site/dist/index.js');
